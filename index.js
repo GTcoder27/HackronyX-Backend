@@ -18,12 +18,12 @@ app.use('/api/messages/tts/text_to_voice', express.raw({ limit: '50mb' }));
 
 dotenv.config();
 app.use(express.json());
-app.use(cors());
-// app.use(cors({
-//     origin: process.env.FRONTEND_URL,
-//     credentials: true,
-// // allowedHeaders: ["Content-Type", "Authorization"]  //Add other headers you want to pass through CORS request
-// }));
+
+app.use(cors({
+  origin: 'https://hackronyx-frontend-updated.vercel.app', // allow only your frontend
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true // if you're using cookies or authentication headers
+}));
 
 
 app.use("/api",modelRoutes);
